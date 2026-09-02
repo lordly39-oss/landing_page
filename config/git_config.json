@@ -1,0 +1,6 @@
+{
+  "github_token": "YOUR_GITHUB_TOKEN",
+  "github_owner": "lordly39-oss",
+  "github_repo": "landing_page",
+  "data_file_path": "data/posts.json"
+}

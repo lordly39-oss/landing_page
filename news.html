@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>부동산 소식 &amp; 리포트 - 강릉 솔올공인중개사</title>
+  <meta name="description" content="강릉 유천지구의 최신 부동산 동향, 지역 개발 소식 및 정책 정보를 실시간으로 확인하세요.">
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "surface-bright": "#f9f9ff",
+            "surface-variant": "#e0e2ec",
+            "inverse-on-surface": "#eff0fa",
+            "tertiary-fixed": "#ffdbc8",
+            "surface-tint": "#005bbe",
+            "on-surface": "#181c23",
+            "primary-fixed": "#d7e2ff",
+            "on-tertiary": "#ffffff",
+            "surface-gray": "#F2F4F6",
+            "on-surface-variant": "#414754",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "on-primary-container": "#fefcff",
+            "tertiary": "#944600",
+            "primary-container": "#1071e5",
+            "surface-dim": "#d8d9e3",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#acc7ff",
+            "on-tertiary-fixed-variant": "#743500",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#dae2ff",
+            "surface-container-highest": "#e0e2ec",
+            "text-primary": "#191F28",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#b2c5ff",
+            "secondary": "#0453cd",
+            "primary": "#0059b9",
+            "tertiary-fixed-dim": "#ffb689",
+            "surface-container-low": "#f2f3fd",
+            "surface-container": "#ecedf7",
+            "on-secondary-container": "#fefcff",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#ba5900",
+            "outline-variant": "#c1c6d6",
+            "surface-container-high": "#e6e8f2",
+            "on-primary-fixed-variant": "#004491",
+            "on-secondary-fixed-variant": "#0040a2",
+            "inverse-surface": "#2d3038",
+            "on-background": "#181c23",
+            "secondary-container": "#356ee7",
+            "on-error": "#ffffff",
+            "background": "#f9f9ff",
+            "on-primary-fixed": "#001a40",
+            "primary-fixed-dim": "#acc7ff",
+            "surface": "#f9f9ff",
+            "text-secondary": "#4E5968",
+            "on-tertiary-fixed": "#311300",
+            "on-secondary-fixed": "#001848",
+            "on-tertiary-container": "#fffbff",
+            "outline": "#727785",
+            "border-subtle": "#E5E8EB",
+            "action-gold": "#FFB800"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "20px",
+            "stack-md": "16px",
+            "stack-sm": "8px",
+            "container-max": "1200px",
+            "stack-lg": "32px",
+            "section-gap": "80px"
+          },
+          fontFamily: {
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface pb-20 md:pb-0">
+  <header class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-[1200px] mx-auto px-gutter flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-stack-md">
+        <img alt="강릉 솔올공인중개사 로고" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTFw5yAn1KlQUT9cAGxJfi4CfynKDH6uMWebqmTbbYgxaLJXWnLXJoW9BT9ZoC6ilgqVd6Gf34w2NzP6-8-iyRF8OUm6Y3JzzS9-pCg9kjeWOVfIQC7OmSf8f7hAn6th-UXkIwGiDrYXv-wtEijsjvalLcQvQFRkpJckuT2rtZxJmlVLVbGPUhuaHy0wmQ3oijFjdFmvZjHdC6P5E7mTALiFOjiZU0kP11W8oaok9gvTnh_gtv6B98Xw">
+        <span class="font-headline-sm text-headline-sm text-primary tracking-tight">강릉 솔올공인중개사 사무소</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-stack-lg" data-active-classes="text-primary font-bold">
+        <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="index.html">홈</a>
+        <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="listings" href="index.html#listings">매물 찾기</a>
+        <a aria-current="page" class="transition-colors text-primary font-bold" data-path="news" href="news.html">부동산 소식</a>
+        <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="index.html#contact">고객센터</a>
+      </nav>
+      <div class="flex items-center gap-stack-md">
+        <a href="tel:033-642-8606" class="hidden sm:flex bg-secondary-container text-on-primary px-6 py-3 rounded-xl font-label-md hover:bg-primary transition-all shadow-sm items-center gap-2">
+          <span class="material-symbols-outlined text-[20px]">call</span>
+          전화 상담
+        </a>
+        <a href="admin.html" class="hidden sm:flex border border-border-subtle text-on-surface-variant hover:text-primary px-4 py-3 rounded-xl font-label-md hover:bg-surface-container transition-all">
+          관리자
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-20">
+    <div class="flex flex-col w-full relative overflow-hidden bg-surface pb-32">
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute top-[40%] left-0 w-[600px] h-[600px] bg-secondary-container/5 rounded-full blur-[80px] -translate-x-1/3"></div>
+      </div>
+
+      <section class="w-full max-w-container-max mx-auto px-gutter pt-16 pb-12 relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-stack-lg">
+        <div class="flex flex-col gap-stack-sm max-w-2xl">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-action-gold animate-pulse"></span>
+            <span class="text-label-md font-label-md text-action-gold uppercase tracking-wider">Latest Updates</span>
+          </div>
+          <h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight leading-tight">강릉 부동산 소식 <br class="hidden md:block"> &amp; 리포트</h1>
+          <p class="text-body-lg font-body-lg text-on-surface-variant mt-2">빠르게 변화하는 강릉 부동산 &amp; 유천지구의 최신 부동산 동향과 핵심 지역 정보를 가장 먼저 전해드립니다.</p>
+        </div>
+        <div class="w-full md:w-[400px] relative group">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors z-10">search</span>
+          <input id="search-input" class="w-full h-14 pl-12 pr-4 rounded-xl bg-surface-container-highest text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm" placeholder="관심있는 소식을 검색해보세요" type="text">
+        </div>
+      </section>
+
+      <section class="w-full max-w-container-max mx-auto px-gutter relative z-10 flex flex-col lg:flex-row gap-gutter">
+        <div class="flex-1 flex flex-col gap-10">
+          <div id="featured-post-container"></div>
+
+          <div class="flex flex-col bg-surface-container-lowest rounded-3xl p-6 md:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-border-subtle">
+              <h3 class="text-headline-sm font-headline-sm text-on-surface">전체 소식</h3>
+              <div id="category-tabs" class="flex flex-wrap gap-2">
+                <button data-cat="all" class="cat-btn active px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-colors min-h-[36px]">전체</button>
+                <button data-cat="지역 개발" class="cat-btn px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors min-h-[36px]">지역 개발</button>
+                <button data-cat="부동산 정책" class="cat-btn px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors min-h-[36px]">정책</button>
+                <button data-cat="지역 소식" class="cat-btn px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors min-h-[36px]">지역 소식</button>
+                <button data-cat="공지사항" class="cat-btn px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors min-h-[36px]">공지</button>
+              </div>
+            </div>
+
+            <div id="news-list" class="flex flex-col gap-0 divide-y divide-border-subtle/50">
+              <div class="py-12 text-center text-on-surface-variant">소식을 불러오는 중입니다...</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="w-full lg:w-[340px] shrink-0 flex flex-col gap-stack-lg relative z-20">
+          <div class="bg-primary text-on-primary rounded-3xl p-8 shadow-[0_12px_32px_rgba(0,89,185,0.2)]">
+            <div class="flex items-center gap-2 mb-6">
+              <span class="material-symbols-outlined text-action-gold">trending_up</span>
+              <h3 class="text-headline-sm font-headline-sm text-on-primary">유천지구 시장 지수</h3>
+            </div>
+            <div class="flex flex-col gap-6">
+              <div>
+                <div class="flex justify-between items-end mb-2">
+                  <span class="text-label-sm font-label-sm text-on-primary/70">아파트 매매가 지수</span>
+                  <span class="text-headline-sm font-headline-sm text-on-primary">102.4</span>
+                </div>
+                <div class="w-full h-1.5 bg-on-primary/20 rounded-full overflow-hidden">
+                  <div class="h-full bg-action-gold w-[75%] rounded-full"></div>
+                </div>
+                <div class="mt-1 text-right text-label-sm font-label-sm text-action-gold">+1.2% (전월대비)</div>
+              </div>
+              <div>
+                <div class="flex justify-between items-end mb-2">
+                  <span class="text-label-sm font-label-sm text-on-primary/70">상가 임대료 지수</span>
+                  <span class="text-headline-sm font-headline-sm text-on-primary">98.7</span>
+                </div>
+                <div class="w-full h-1.5 bg-on-primary/20 rounded-full overflow-hidden">
+                  <div class="h-full bg-secondary-fixed w-[45%] rounded-full"></div>
+                </div>
+                <div class="mt-1 text-right text-label-sm font-label-sm text-on-primary/70">-0.3% (전월대비)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-3xl p-8 border border-border-subtle shadow-sm flex flex-col gap-stack-md">
+            <div class="w-12 h-12 rounded-full bg-secondary-container/10 flex items-center justify-center text-secondary mb-2">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mail</span>
+            </div>
+            <h3 class="text-headline-sm font-headline-sm text-on-surface">리포트 상담 신청</h3>
+            <p class="text-body-sm font-body-sm text-on-surface-variant mb-2">유천지구 부동산 심층 분석 및 최신 매물 상담을 도와드립니다.</p>
+            <div class="flex flex-col gap-3">
+              <a href="tel:033-642-8606" class="w-full h-12 rounded-xl bg-on-surface text-surface font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">phone</span>
+                033-642-8606 전화상담
+              </a>
+            </div>
+          </div>
+
+          <div class="rounded-3xl overflow-hidden shadow-sm h-[200px] relative group">
+            <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuALUFD36dFL__rqJtaf-NjmQVnFX6clRiTQoe_yB15mt9Xyfm80P9KoBzbsEfxRYXk3O-1749QsKBl75uAXLKThzGEvjrkNqKmcXk9wKbFZywv87JFmwkxpSgQO8GfhREZ0b8WLvOKZz_AvfKVgqq1l_5sIaIlI6HMUcIs3kaRgR6quO0ciU1uTNCyQUPieEFq5KGGhB0yLH_SGDiRiTLB6M_lJR6e4wzqRjeKE9IdIr_JFRk4du84Bzg')"></div>
+            <div class="absolute bottom-4 left-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm p-3 rounded-xl shadow-sm flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+                <span class="material-symbols-outlined text-[18px]">location_on</span>
+              </div>
+              <span class="text-label-md font-label-md text-on-surface truncate">강원특별자치도 강릉시 홍제동</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-t border-border-subtle flex justify-around items-center h-16 px-4">
+    <a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary gap-1 py-1 w-16">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium">홈</span>
+    </a>
+    <a href="news.html" class="flex flex-col items-center justify-center text-primary gap-1 py-1 w-16">
+      <span class="material-symbols-outlined text-[22px]">newspaper</span>
+      <span class="text-[11px] font-medium">부동산소식</span>
+    </a>
+    <a href="tel:033-642-8606" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary gap-1 py-1 w-16">
+      <span class="material-symbols-outlined text-[22px]">call</span>
+      <span class="text-[11px] font-medium">전화상담</span>
+    </a>
+    <a href="admin.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary gap-1 py-1 w-16">
+      <span class="material-symbols-outlined text-[22px]">manage_accounts</span>
+      <span class="text-[11px] font-medium">관리자</span>
+    </a>
+  </nav>
+
+  <footer class="w-full bg-surface-container-low py-section-gap border-t border-border-subtle">
+    <div class="max-w-[1200px] mx-auto px-gutter">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg mb-stack-lg">
+        <div class="flex flex-col gap-stack-sm">
+          <span class="font-headline-sm text-headline-sm text-on-surface">강릉 솔올 공인중개사</span>
+          <p class="text-body-sm font-body-sm text-on-surface-variant">강릉 지역 최고의 부동산 파트너로서 신뢰와 정직으로 보답하겠습니다.</p>
+        </div>
+        <div class="flex flex-col gap-stack-sm">
+          <span class="font-label-md text-label-md text-on-surface uppercase">연락처</span>
+          <p class="text-body-sm font-body-sm text-on-surface-variant">강원도 강릉시 홍제동 | 대표전화: 033-642-8606</p>
+        </div>
+        <div class="flex flex-col gap-stack-sm">
+          <span class="font-label-md text-label-md text-on-surface uppercase">영업시간</span>
+          <p class="text-body-sm font-body-sm text-on-surface-variant">평일 09:00 - 17:00 | 주말 및 공휴일 상담 예약가능</p>
+        </div>
+      </div>
+      <div class="pt-stack-md border-t border-border-subtle flex flex-col sm:flex-row justify-between items-center gap-4 text-label-sm font-label-sm text-on-surface-variant">
+        <div>© 2024 강릉 솔올공인중개사. All rights reserved.</div>
+        <a href="admin.html" class="text-on-surface-variant/60 hover:text-primary transition-colors">Agent Login</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="db.js"></script>
+  <script>
+    let allPosts = [];
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadNews();
+
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim().toLowerCase();
+          renderList();
+        });
+      }
+
+      const catButtons = document.querySelectorAll('.cat-btn');
+      catButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          catButtons.forEach(b => {
+            b.classList.remove('bg-primary', 'text-on-primary');
+            b.classList.add('bg-surface-container', 'text-on-surface-variant');
+          });
+          btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+          btn.classList.add('bg-primary', 'text-on-primary');
+
+          currentCategory = btn.getAttribute('data-cat');
+          renderList();
+        });
+      });
+    });
+
+    async function loadNews() {
+      try {
+        allPosts = await getPosts();
+        renderFeatured();
+        renderList();
+      } catch (err) {
+        document.getElementById('news-list').innerHTML = `
+          <div class="py-12 text-center text-error">소식을 불러오는 중 오류가 발생했습니다.</div>
+        `;
+      }
+    }
+
+    function renderFeatured() {
+      const container = document.getElementById('featured-post-container');
+      if (!allPosts || allPosts.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
+
+      const featured = allPosts.find(p => p.isFeatured) || allPosts[0];
+      const summary = markdownToText(featured.content).slice(0, 140) + '...';
+
+      container.innerHTML = `
+        <a href="news-detail.html?id=${featured.id}" class="group relative overflow-hidden rounded-[2rem] bg-surface-container shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 min-h-[380px] flex flex-col justify-end cursor-pointer block">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrffNLM4W5DGturL22IYudRywrsYgZ2bA_BqOBbSahm8CKe4OC0ZtUXENftafmDIA2jRh9vAugT0AxS1wflTfdn4pjth7pFirtnnVLXnEBBn3CcYH0m3R0vSKfIeKhJMd6OasZMHtl7WDVpEOJRQVGAbesMwVd4Bi0zEPNd_KHSu1tzz2f3sSisG_1-gvTmETDqefQgYNr7SGs3f1AXGIjnycZnJsmerTA3ZkP7h6hBZNXc7ujPHRolw')"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-on-surface/95 via-on-surface/50 to-transparent"></div>
+          <div class="relative z-10 p-8 md:p-12 flex flex-col gap-stack-md">
+            <div class="flex items-center gap-3 mb-1">
+              <span class="px-3 py-1 rounded-full bg-primary/30 backdrop-blur-md text-on-primary text-label-sm font-label-sm shadow-sm border border-primary/30">
+                ${escapeHtml(featured.category || '주요 소식')}
+              </span>
+              <span class="text-label-sm font-label-sm text-white/80 font-mono">${escapeHtml(featured.date || '')}</span>
+            </div>
+            <h2 class="text-headline-md font-headline-md text-on-primary group-hover:text-primary-fixed-dim transition-colors line-clamp-2 leading-snug">
+              ${escapeHtml(featured.title || '')}
+            </h2>
+            <p class="text-body-md font-body-md text-on-primary/80 line-clamp-2 max-w-2xl mt-1">
+              ${escapeHtml(summary)}
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-on-primary font-label-md text-label-md group-hover:translate-x-2 transition-transform">
+              자세히 보기 <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </div>
+          </div>
+        </a>
+      `;
+    }
+
+    function renderList() {
+      const listContainer = document.getElementById('news-list');
+      
+      let filtered = allPosts.filter(p => {
+        const matchCat = currentCategory === 'all' || p.category === currentCategory || (currentCategory === '부동산 정책' && p.category?.includes('정책')) || (currentCategory === '공지사항' && p.category?.includes('공지'));
+        const matchSearch = !searchQuery || (p.title && p.title.toLowerCase().includes(searchQuery)) || (p.content && p.content.toLowerCase().includes(searchQuery));
+        return matchCat && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        listContainer.innerHTML = `
+          <div class="py-16 text-center text-on-surface-variant">
+            <span class="material-symbols-outlined text-4xl mb-2 text-outline">search_off</span>
+            <p>조건에 맞는 소식이 없습니다.</p>
+          </div>
+        `;
+        return;
+      }
+
+      listContainer.innerHTML = filtered.map(post => {
+        const summary = markdownToText(post.content).slice(0, 100) + '...';
+        return `
+          <article onclick="location.href='news-detail.html?id=${post.id}'" class="group py-6 md:py-8 flex flex-col md:flex-row gap-4 md:gap-6 items-start cursor-pointer transition-all hover:bg-surface-container/40 -mx-6 md:-mx-10 px-6 md:px-10 rounded-2xl">
+            <div class="w-full md:w-44 shrink-0 flex flex-row md:flex-col justify-between md:justify-start items-center md:items-start gap-2 pt-1">
+              <span class="px-3 py-1 rounded-md bg-secondary-container/10 text-secondary text-label-sm font-label-sm font-semibold">
+                ${escapeHtml(post.category || '일반')}
+              </span>
+              <span class="text-label-sm font-label-sm text-on-surface-variant/70 font-mono">${escapeHtml(post.date || '')}</span>
+            </div>
+            <div class="flex flex-col gap-2 flex-1">
+              <h4 class="text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                ${escapeHtml(post.title || '')}
+              </h4>
+              <p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">
+                ${escapeHtml(summary)}
+              </p>
+            </div>
+            <div class="hidden md:flex shrink-0 w-10 h-10 rounded-full bg-surface-container-high items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors text-on-surface-variant">
+              <span class="material-symbols-outlined text-[20px]">north_east</span>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>

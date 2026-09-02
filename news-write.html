@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>게시글 작성/수정 - 관리자</title>
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "surface-bright": "#f9f9ff",
+            "surface-variant": "#e0e2ec",
+            "inverse-on-surface": "#eff0fa",
+            "tertiary-fixed": "#ffdbc8",
+            "surface-tint": "#005bbe",
+            "on-surface": "#181c23",
+            "primary-fixed": "#d7e2ff",
+            "on-tertiary": "#ffffff",
+            "surface-gray": "#F2F4F6",
+            "on-surface-variant": "#414754",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "on-primary-container": "#fefcff",
+            "tertiary": "#944600",
+            "primary-container": "#1071e5",
+            "surface-dim": "#d8d9e3",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#acc7ff",
+            "on-tertiary-fixed-variant": "#743500",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#dae2ff",
+            "surface-container-highest": "#e0e2ec",
+            "text-primary": "#191F28",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#b2c5ff",
+            "secondary": "#0453cd",
+            "primary": "#0059b9",
+            "tertiary-fixed-dim": "#ffb689",
+            "surface-container-low": "#f2f3fd",
+            "surface-container": "#ecedf7",
+            "on-secondary-container": "#fefcff",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#ba5900",
+            "outline-variant": "#c1c6d6",
+            "surface-container-high": "#e6e8f2",
+            "on-primary-fixed-variant": "#004491",
+            "on-secondary-fixed-variant": "#0040a2",
+            "inverse-surface": "#2d3038",
+            "on-background": "#181c23",
+            "secondary-container": "#356ee7",
+            "on-error": "#ffffff",
+            "background": "#f9f9ff",
+            "on-primary-fixed": "#001a40",
+            "primary-fixed-dim": "#acc7ff",
+            "surface": "#f9f9ff",
+            "text-secondary": "#4E5968",
+            "on-tertiary-fixed": "#311300",
+            "on-secondary-fixed": "#001848",
+            "on-tertiary-container": "#fffbff",
+            "outline": "#727785",
+            "border-subtle": "#E5E8EB",
+            "action-gold": "#FFB800"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "20px",
+            "stack-md": "16px",
+            "stack-sm": "8px",
+            "container-max": "1200px",
+            "stack-lg": "32px",
+            "section-gap": "80px"
+          },
+          fontFamily: {
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen pb-32">
+  <header class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-b border-border-subtle">
+    <div class="h-16 max-w-[1200px] mx-auto px-gutter flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="admin.html" class="flex items-center gap-2 text-primary font-bold">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          <span class="text-sm sm:text-base">대시보드로 돌아가기</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="news.html" class="text-xs sm:text-sm text-on-surface-variant hover:text-primary px-3 py-1.5 rounded-lg border border-border-subtle">
+          사이트 바로가기
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-20 max-w-[900px] mx-auto px-gutter py-8">
+    <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-10 shadow-sm border border-border-subtle">
+      <div class="mb-8 pb-4 border-b border-border-subtle flex items-center justify-between">
+        <h1 id="page-title" class="text-xl sm:text-2xl font-bold text-on-surface">새 게시글 작성</h1>
+        <span class="text-xs text-on-surface-variant/70">마크다운 지원</span>
+      </div>
+
+      <form id="post-form" class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-on-surface mb-2">카테고리</label>
+            <select id="category" class="w-full h-12 px-4 rounded-xl border border-border-subtle bg-surface text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm">
+              <option value="지역 개발">지역 개발</option>
+              <option value="부동산 정책">부동산 정책</option>
+              <option value="지역 소식">지역 소식</option>
+              <option value="공지사항">공지사항</option>
+              <option value="매물 정보">매물 정보</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-on-surface mb-2">작성일</label>
+            <input type="date" id="date" class="w-full h-12 px-4 rounded-xl border border-border-subtle bg-surface text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-on-surface mb-2">제목</label>
+          <input type="text" id="title" required placeholder="게시글 제목을 입력하세요" class="w-full h-12 px-4 rounded-xl border border-border-subtle bg-surface text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/50 text-base">
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-sm font-semibold text-on-surface">본문 내용 (마크다운)</label>
+            <div class="flex gap-2">
+              <button type="button" id="tab-write" class="text-xs font-semibold px-3 py-1 rounded-md bg-primary text-on-primary">작성</button>
+              <button type="button" id="tab-preview" class="text-xs font-semibold px-3 py-1 rounded-md bg-surface-container text-on-surface-variant hover:bg-surface-variant">미리보기</button>
+            </div>
+          </div>
+          <div id="write-area">
+            <textarea id="content" rows="14" required placeholder="게시글 본문을 마크다운 형식으로 작성해 주세요.&#10;&#10;예시:&#10;### 주요 내용&#10;- 첫 번째 항목&#10;- 두 번째 항목&#10;&#10;**굵은 글씨**나 [링크](https://...)도 사용 가능합니다." class="w-full p-4 rounded-xl border border-border-subtle bg-surface text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm sm:text-base font-mono leading-relaxed resize-y"></textarea>
+          </div>
+          <div id="preview-area" class="hidden min-h-[350px] p-6 rounded-xl border border-border-subtle bg-surface-bright text-on-surface overflow-y-auto">
+            <div id="preview-content"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="isFeatured" class="w-4 h-4 rounded text-primary focus:ring-primary">
+          <label for="isFeatured" class="text-sm font-medium text-on-surface cursor-pointer">상단 주요 소식(Featured)으로 등록</label>
+        </div>
+
+        <div id="error-msg" class="hidden p-4 rounded-xl bg-error/10 text-error text-sm font-medium"></div>
+
+        <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-border-subtle">
+          <a href="admin.html" class="px-6 py-3 rounded-xl bg-surface-container text-on-surface font-semibold text-center hover:bg-surface-variant transition-colors min-h-[44px] flex items-center justify-center">
+            취소
+          </a>
+          <button type="submit" id="submit-btn" class="px-8 py-3 rounded-xl bg-primary text-on-primary font-semibold hover:bg-secondary transition-colors min-h-[44px] flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">save</span>
+            <span id="submit-btn-text">게시글 저장</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="db.js"></script>
+  <script>
+    requireAdmin();
+
+    let editPostId = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      editPostId = urlParams.get('id');
+
+      const dateInput = document.getElementById('date');
+      dateInput.value = new Date().toISOString().split('T')[0];
+
+      const tabWrite = document.getElementById('tab-write');
+      const tabPreview = document.getElementById('tab-preview');
+      const writeArea = document.getElementById('write-area');
+      const previewArea = document.getElementById('preview-area');
+      const previewContent = document.getElementById('preview-content');
+      const contentInput = document.getElementById('content');
+
+      tabWrite.addEventListener('click', () => {
+        tabWrite.className = 'text-xs font-semibold px-3 py-1 rounded-md bg-primary text-on-primary';
+        tabPreview.className = 'text-xs font-semibold px-3 py-1 rounded-md bg-surface-container text-on-surface-variant hover:bg-surface-variant';
+        writeArea.classList.remove('hidden');
+        previewArea.classList.add('hidden');
+      });
+
+      tabPreview.addEventListener('click', () => {
+        tabPreview.className = 'text-xs font-semibold px-3 py-1 rounded-md bg-primary text-on-primary';
+        tabWrite.className = 'text-xs font-semibold px-3 py-1 rounded-md bg-surface-container text-on-surface-variant hover:bg-surface-variant';
+        writeArea.classList.add('hidden');
+        previewArea.classList.remove('hidden');
+        previewContent.innerHTML = renderMarkdown(contentInput.value || '*작성된 내용이 없습니다.*');
+      });
+
+      if (editPostId) {
+        document.getElementById('page-title').textContent = '게시글 수정';
+        document.getElementById('submit-btn-text').textContent = '수정 완료';
+        try {
+          const post = await getPost(editPostId);
+          if (post) {
+            document.getElementById('title').value = post.title || '';
+            document.getElementById('category').value = post.category || '지역 개발';
+            document.getElementById('date').value = post.date || new Date().toISOString().split('T')[0];
+            document.getElementById('content').value = post.content || '';
+            document.getElementById('isFeatured').checked = !!post.isFeatured;
+          } else {
+            alert('게시글을 찾을 수 없습니다.');
+            window.location.href = 'admin.html';
+          }
+        } catch (e) {
+          alert('게시글 정보를 불러오는 중 오류가 발생했습니다.');
+        }
+      }
+
+      const form = document.getElementById('post-form');
+      const errorMsg = document.getElementById('error-msg');
+      const submitBtn = document.getElementById('submit-btn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorMsg.classList.add('hidden');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70');
+
+        const postData = {
+          title: document.getElementById('title').value.trim(),
+          category: document.getElementById('category').value,
+          date: document.getElementById('date').value,
+          content: document.getElementById('content').value.trim(),
+          isFeatured: document.getElementById('isFeatured').checked
+        };
+
+        if (editPostId) {
+          postData.id = editPostId;
+        }
+
+        try {
+          const saved = await savePost(postData);
+          alert(editPostId ? '게시글이 수정되었습니다.' : '게시글이 등록되었습니다.');
+          window.location.href = `news-detail.html?id=${saved.id || editPostId}`;
+        } catch (err) {
+          errorMsg.textContent = '저장 실패: ' + err.message;
+          errorMsg.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-70');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
