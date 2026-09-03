@@ -156,21 +156,8 @@ function formatInline(str) {
   safe = safe.replace(/\*(.+?)\*/g, '<em class="italic">$1</em>');
   safe = safe.replace(/_(.+?)_/g, '<em class="italic">$1</em>');
   safe = safe.replace(/~~(.+?)~~/g, '<del class="line-through opacity-70">$1</del>');
-
-  // Markdown 이미지
-  safe = safe.replace(
-    /!\[([^\]]*)\]\((https?:\/\/[^\s\)]+)\)/g,
-    '<img src="$2" alt="$1" class="max-w-full h-auto rounded-xl my-4 block" loading="lazy">'
-  );
-
-  // Markdown 링크
-  safe = safe.replace(
-    /\[([^\]]+)\]\((https?:\/\/[^\s\)]+|mailto:[^\s\)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:text-secondary">$1</a>'
-  );
-
+  safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+|mailto:[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:text-secondary">$1</a>');
   return safe;
-}
 }
 
 function markdownToText(src) {
