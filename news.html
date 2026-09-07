@@ -230,25 +230,17 @@
             </div>
           </div>
 
-          <div class="rounded-3xl overflow-hidden shadow-sm h-[200px] relative group">
-    <!-- 구글 지도 iframe -->
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x3561efa22b8a83a9%3A0x141dceda923fe7d2!2z7IaU7Jis6rO17J247KSR6rCc7IKs7IKs66y07IaM!5e1!3m2!1sko!2skr!4v1788743367277!5m2!1sko!2skr" 
-        class="w-full h-full border-0" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="strict-origin-when-cross-origin">
-    </iframe>
-
-    <!-- 하단 위치 정보 오버레이 라벨 -->
-    <div class="absolute bottom-4 left-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm p-3 rounded-xl shadow-sm flex items-center gap-3 pointer-events-none">
+   <div class="rounded-3xl overflow-hidden shadow-sm h-[200px] relative group">
+    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" 
+         style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuALUFD36dFL__rqJtaf-NjmQVnFX6clRiTQoe_yB15mt9Xyfm80P9KoBzbsEfxRYXk3O-1749QsKBl75uAXLKThzGEvjrkNqKmcXk9wKbFZywv87JFmwkxpSgQO8GfhREZ0b8WLvOKZz_AvfKVgqq1l_5sIaIlI6HMUcIs3kaRgR6quO0ciU1uTNCyQUPieEFq5KGGhB0yLH_SGDiRiTLB6M_lJR6e4wzqRjeKE9IdIr_JFRk4du84Bzg')">
+    </div>
+    <div class="absolute bottom-4 left-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm p-3 rounded-xl shadow-sm flex items-center gap-3">
         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
             <span class="material-symbols-outlined text-[18px]">location_on</span>
         </div>
         <span class="text-label-md font-label-md text-on-surface truncate">강원특별자치도 강릉시 홍제동</span>
     </div>
-</div>
-
+</div>      
   <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-t border-border-subtle flex justify-around items-center h-16 px-4">
     <a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary gap-1 py-1 w-16">
       <span class="material-symbols-outlined text-[22px]">home</span>
