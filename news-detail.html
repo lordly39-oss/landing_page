@@ -248,6 +248,16 @@
 
         document.title = `${post.title || '게시글'} - 강릉 솔올공인중개사`;
 
+        // Inject Dynamic JSON-LD Article Schema for Generative Engines
+        try {
+          const schemaScript = document.createElement('script');
+          schemaScript.type = 'application/ld+json';
+          schemaScript.text = generateArticleSchema(post, window.location.href);
+          document.head.appendChild(schemaScript);
+        } catch (schemaErr) {
+          console.error('Schema generation failed:', schemaErr);
+        }
+
         const contentHtml = renderMarkdown(post.content || '');
 
         container.innerHTML = `
@@ -259,13 +269,37 @@
               <span class="text-on-surface-variant/70 text-body-sm font-mono">
                 ${escapeHtml(post.date || '')}
               </span>
+              <span class="inline-flex items-center gap-1 text-xs text-primary font-medium bg-primary-fixed/20 px-2.5 py-1 rounded-full">
+                <span class="material-symbols-outlined text-[14px]">verified</span>
+                전문가 검증 리포트
+              </span>
             </div>
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface leading-tight">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface leading-tight tracking-tight">
               ${escapeHtml(post.title || '')}
             </h1>
           </div>
+          
           <div class="post-body text-on-surface font-body-md text-base sm:text-lg leading-relaxed">
             ${contentHtml}
+          </div>
+
+          <!-- GEO E-E-A-T Author & Citation Verification Box -->
+          <div class="mt-12 pt-8 border-t border-border-subtle">
+            <div class="bg-surface-container-low rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 border border-border-subtle/70">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTFw5yAn1KlQUT9cAGxJfi4CfynKDH6uMWebqmTbbYgxaLJXWnLXJoW9BT9ZoC6ilgqVd6Gf34w2NzP6-8-iyRF8OUm6Y3JzzS9-pCg9kjeWOVfIQC7OmSf8f7hAn6th-UXkIwGiDrYXv-wtEijsjvalLcQvQFRkpJckuT2rtZxJmlVLVbGPUhuaHy0wmQ3oijFjdFmvZjHdC6P5E7mTALiFOjiZU0kP11W8oaok9gvTnh_gtv6B98Xw" alt="솔올 공인중개사 로고" class="w-16 h-16 rounded-full object-cover border-2 border-primary/20 shrink-0 bg-surface">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-bold text-base sm:text-lg text-on-surface">강릉 솔올 공인중개사 사무소</span>
+                  <span class="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded font-semibold">공식 인증</span>
+                </div>
+                <p class="text-sm text-on-surface-variant mb-3">강릉 홍제동 유천택지지구 아파트·상가·토지 전문 10년 경력의 공인중개사입니다. 실거래가 및 법률 권리분석에 기반한 정확한 분석 리포트를 제공합니다.</p>
+                <div class="flex flex-wrap gap-2 text-xs text-on-surface-variant/80">
+                  <span class="bg-surface-container-highest px-2.5 py-1 rounded-md">📍 강릉시 선수촌로 69, 209호</span>
+                  <span class="bg-surface-container-highest px-2.5 py-1 rounded-md">📞 033-642-8606</span>
+                  <span class="bg-surface-container-highest px-2.5 py-1 rounded-md">🛡️ 2억원 공제증서 가입</span>
+                </div>
+              </div>
+            </div>
           </div>
         `;
 
