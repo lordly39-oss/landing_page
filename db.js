@@ -59,44 +59,15 @@ function renderMarkdown(src) {
   let inList = false;
   let inOrderedList = false;
   let inBlockquote = false;
-  let inTable = false;
 
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
     let trimmed = line.trim();
 
-    // Table Handling
-    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
-      if (inList) { output.push('</ul>'); inList = false; }
-      if (inOrderedList) { output.push('</ol>'); inOrderedList = false; }
-      if (inBlockquote) { output.push('</div></div>'); inBlockquote = false; }
-
-      if (/^\|(\s*:?-+:?\s*\|)+$/.test(trimmed)) {
-        continue;
-      }
-
-      const cells = trimmed.split('|').slice(1, -1).map(c => c.trim());
-      if (!inTable) {
-        inTable = true;
-        output.push('<div class="overflow-x-auto my-6 rounded-2xl border border-border-subtle shadow-sm"><table class="w-full text-left text-sm border-collapse">');
-        output.push('<thead class="bg-surface-container-low text-on-surface font-semibold border-b border-border-subtle"><tr>');
-        cells.forEach(c => output.push(`<th class="p-3.5 sm:px-4">${formatInline(c)}</th>`));
-        output.push('</tr></thead><tbody class="divide-y divide-border-subtle bg-surface-container-lowest">');
-      } else {
-        output.push('<tr class="hover:bg-surface-container-low/50 transition-colors">');
-        cells.forEach(c => output.push(`<td class="p-3.5 sm:px-4 text-on-surface-variant">${formatInline(c)}</td>`));
-        output.push('</tr>');
-      }
-      continue;
-    } else if (inTable) {
-      output.push('</tbody></table></div>');
-      inTable = false;
-    }
-
     if (trimmed.startsWith('---') || trimmed.startsWith('***') || trimmed.startsWith('___')) {
       if (inList) { output.push('</ul>'); inList = false; }
       if (inOrderedList) { output.push('</ol>'); inOrderedList = false; }
-      if (inBlockquote) { output.push('</div></div>'); inBlockquote = false; }
+      if (inBlockquote) { output.push('</blockquote>'); inBlockquote = false; }
       output.push('<hr class="my-6 border-border-subtle" />');
       continue;
     }
@@ -104,15 +75,15 @@ function renderMarkdown(src) {
     if (trimmed.startsWith('#')) {
       if (inList) { output.push('</ul>'); inList = false; }
       if (inOrderedList) { output.push('</ol>'); inOrderedList = false; }
-      if (inBlockquote) { output.push('</div></div>'); inBlockquote = false; }
+      if (inBlockquote) { output.push('</blockquote>'); inBlockquote = false; }
 
       let level = 0;
       while (level < trimmed.length && trimmed[level] === '#') level++;
       let headingText = trimmed.slice(level).trim();
       headingText = formatInline(headingText);
 
-      if (level === 1) output.push(`<h1 class="text-2xl sm:text-3xl font-bold mt-8 mb-4 text-on-surface tracking-tight">${headingText}</h1>`);
-      else if (level === 2) output.push(`<h2 class="text-xl sm:text-2xl font-bold mt-7 mb-3 text-on-surface tracking-tight flex items-center gap-2"><span class="w-1.5 h-5 bg-primary rounded-full inline-block"></span>${headingText}</h2>`);
+      if (level === 1) output.push(`<h1 class="text-2xl sm:text-3xl font-bold mt-8 mb-4 text-on-surface">${headingText}</h1>`);
+      else if (level === 2) output.push(`<h2 class="text-xl sm:text-2xl font-bold mt-6 mb-3 text-on-surface">${headingText}</h2>`);
       else if (level === 3) output.push(`<h3 class="text-lg sm:text-xl font-bold mt-5 mb-2 text-on-surface">${headingText}</h3>`);
       else output.push(`<h4 class="text-base sm:text-lg font-semibold mt-4 mb-2 text-on-surface">${headingText}</h4>`);
       continue;
@@ -121,72 +92,15 @@ function renderMarkdown(src) {
     if (trimmed.startsWith('>')) {
       if (inList) { output.push('</ul>'); inList = false; }
       if (inOrderedList) { output.push('</ol>'); inOrderedList = false; }
-      
-      let rawQuote = trimmed.replace(/^>\s?/, '').trim();
-      const alertMatch = rawQuote.match(/^\[!(SUMMARY|TLDR|KEY-TAKEAWAY|STATISTICS|DATA|QUOTE|SOURCES|CITATION|NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i);
-      
-      if (alertMatch) {
-        if (inBlockquote) { output.push('</div></div>'); }
-        const type = alertMatch[1].toUpperCase();
-        inBlockquote = true;
-        
-        if (type === 'SUMMARY' || type === 'TLDR' || type === 'KEY-TAKEAWAY') {
-          output.push(`
-            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-primary-fixed/30 to-secondary-fixed/20 border border-primary/25 shadow-sm">
-              <div class="flex items-center gap-2 mb-2 font-bold text-primary text-sm sm:text-base">
-                <span class="material-symbols-outlined text-[20px]">psychology</span>
-                <span>AI 핵심 요약 (TL;DR)</span>
-              </div>
-              <div class="text-on-surface-variant text-sm sm:text-base leading-relaxed space-y-1">
-          `);
-        } else if (type === 'STATISTICS' || type === 'DATA') {
-          output.push(`
-            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-amber-500/10 border border-action-gold/30 shadow-sm">
-              <div class="flex items-center gap-2 mb-2 font-bold text-tertiary text-sm sm:text-base">
-                <span class="material-symbols-outlined text-[20px]">analytics</span>
-                <span>핵심 시장 &amp; 실거래가 데이터</span>
-              </div>
-              <div class="text-on-surface text-sm sm:text-base leading-relaxed space-y-1">
-          `);
-        } else if (type === 'QUOTE') {
-          output.push(`
-            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-surface-container-low border-l-4 border-secondary shadow-sm">
-              <div class="flex items-center gap-2 mb-2 font-bold text-secondary text-sm sm:text-base">
-                <span class="material-symbols-outlined text-[20px]">format_quote</span>
-                <span>공인중개사 전문 분석 &amp; 코멘트</span>
-              </div>
-              <div class="text-on-surface italic text-sm sm:text-base leading-relaxed space-y-1">
-          `);
-        } else if (type === 'SOURCES' || type === 'CITATION') {
-          output.push(`
-            <div class="my-6 p-4 sm:p-5 rounded-2xl bg-surface-container-high/60 border border-border-subtle text-xs sm:text-sm">
-              <div class="flex items-center gap-2 mb-2 font-semibold text-on-surface-variant">
-                <span class="material-symbols-outlined text-[18px] text-primary">verified</span>
-                <span>공식 데이터 출처 &amp; 인용</span>
-              </div>
-              <div class="text-on-surface-variant leading-normal space-y-1">
-          `);
-        } else {
-          output.push(`
-            <div class="my-5 p-4 rounded-xl bg-primary/5 border-l-4 border-primary text-on-surface-variant">
-              <div class="text-sm sm:text-base space-y-1">
-          `);
-        }
-        continue;
-      }
-
+      let quoteContent = formatInline(trimmed.replace(/^>\s?/, ''));
       if (!inBlockquote) {
-        output.push(`
-          <div class="my-5 p-4 sm:p-5 rounded-xl bg-primary/5 border-l-4 border-primary text-on-surface-variant italic">
-            <div class="text-sm sm:text-base leading-relaxed">
-        `);
+        output.push('<blockquote class="border-l-4 border-primary pl-4 py-2 my-4 bg-primary/5 text-on-surface-variant italic rounded-r-lg">');
         inBlockquote = true;
       }
-
-      output.push(`<p class="my-1">${formatInline(rawQuote)}</p>`);
+      output.push(`<p class="my-1">${quoteContent}</p>`);
       continue;
     } else if (inBlockquote) {
-      output.push('</div></div>');
+      output.push('</blockquote>');
       inBlockquote = false;
     }
 
@@ -221,8 +135,7 @@ function renderMarkdown(src) {
 
   if (inList) output.push('</ul>');
   if (inOrderedList) output.push('</ol>');
-  if (inBlockquote) output.push('</div></div>');
-  if (inTable) output.push('</tbody></table></div>');
+  if (inBlockquote) output.push('</blockquote>');
 
   let result = output.join('\n');
 
@@ -268,44 +181,6 @@ function markdownToText(src) {
     .replace(/---|\*\*\*|___/g, '')
     .replace(/\n+/g, ' ')
     .trim();
-}
-
-function generateArticleSchema(post, fullUrl) {
-  if (!post) return '';
-  const cleanSummary = markdownToText(post.content || '').slice(0, 160);
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.title || "부동산 소식",
-    "description": cleanSummary,
-    "datePublished": post.date || new Date().toISOString().split('T')[0],
-    "dateModified": post.date || new Date().toISOString().split('T')[0],
-    "author": {
-      "@type": "RealEstateAgent",
-      "name": "강릉 솔올 공인중개사 사무소",
-      "telephone": "033-642-8606",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "선수촌로 69, 209호",
-        "addressLocality": "강릉시",
-        "addressRegion": "강원특별자치도",
-        "addressCountry": "KR"
-      }
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "강릉 솔올 공인중개사 사무소",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDTFw5yAn1KlQUT9cAGxJfi4CfynKDH6uMWebqmTbbYgxaLJXWnLXJoW9BT9ZoC6ilgqVd6Gf34w2NzP6-8-iyRF8OUm6Y3JzzS9-pCg9kjeWOVfIQC7OmSf8f7hAn6th-UXkIwGiDrYXv-wtEijsjvalLcQvQFRkpJckuT2rtZxJmlVLVbGPUhuaHy0wmQ3oijFjdFmvZjHdC6P5E7mTALiFOjiZU0kP11W8oaok9gvTnh_gtv6B98Xw"
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": fullUrl || window.location.href
-    }
-  };
-  return JSON.stringify(schema);
 }
 
 async function getPosts() {
