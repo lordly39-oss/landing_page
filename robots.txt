@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://landing-page-one-lyart-17.vercel.app/sitemap.xml
